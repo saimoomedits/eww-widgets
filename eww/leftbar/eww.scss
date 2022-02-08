@@ -1,0 +1,326 @@
+*{
+	all: unset;
+	font-family: feather;
+	font-family: DaddyTimeMono NF;
+}
+
+
+/** tooltip!! **/
+tooltip.background {
+    background-color: #0f0f17;
+    font-size: 18;
+    border-radius: 10px;
+    color: #bfc9db;
+}
+
+tooltip label {
+    margin: 6px;
+}
+
+/** time **/
+.hour_class {
+    color: #bec8da;
+    font-size: 45px;
+    font-weight: bold;
+    margin: 15px 0px 0px 20px;
+}
+
+.minute_class {
+    color: #bec8da;
+    font-size: 45px;
+    margin: 15px 10px 0px 20px;
+}
+
+.meridiem_class {
+    color: #bec8da;
+    font-size: 30px;
+    margin: 30px 20px 0px 5px;
+}
+
+.day_class {
+    color: #767c88;
+    font-size: 30px;
+    margin: 0px 0px 10px 10px;
+}
+
+.month_class {
+    color: #767c88;
+    font-size: 30px;
+    margin: 0px 10px 10px 10px;
+}
+
+
+.time_sep_class {
+    color: #bec8da;
+    font-size: 30px;
+    margin: 10px 0px 0px 5px;
+}
+
+.day_class_n {
+    color: #767c88;
+    font-size: 18px;
+    margin: 10px 0px 10px 30px;
+}
+
+.month_class_n {
+    color: #767c88;
+    font-size: 18px;
+    margin: 0px 30px 0px 0px;
+}
+
+
+
+
+
+.profile_picture {
+	background-image: url('images/profile.png');
+	background-size: 175px;
+	background-position: 50% 35%;
+	min-height: 175px;
+	min-width: 175px;
+	margin: 20px 0px 0px 2px;
+	border-radius: 100%;
+}
+
+.profile_greeting {
+	color: #bbc6cb;
+	font-size : 30px;
+	font-weight : bold;
+}
+
+.profile_username {
+	color: #a1bdce;
+	font-size : 26px;
+	font-weight : bold;
+	margin : -15px 0px 0px 0px;
+}
+
+
+.bg {
+    background-color: #0f0f17;
+    border-radius: 20px;
+}
+
+.bg_alt {
+    background-color: #13141c;
+    border-radius: 20px 0px 40px 0px;
+}
+.close_btn {
+    font-size: 48px;
+    color: #767c88;
+    margin: 0px 0px 0px 10px;
+}
+.exit_btn {
+    font-size: 56px;
+    color: #d78787;
+}
+.close_bg {
+    background-color: #13141c;
+    border-radius: 0px 20px 0px 40px;
+}
+.win {
+    background-color: #13141c;
+    border-radius: 18px;
+}
+
+
+.sys_icon_bat, .sys_icon_mem, .sys_icon_cpu{
+    font-size: 34;
+    margin: 40px;
+}
+.sys_win {
+    background-color: #13141c;
+    border-radius: 18px;
+}
+.sys_cpu {
+  color: #d78787;
+    background-color: #232232;
+  border-radius: 10px;
+}
+.sys_bat {
+  color: #afbea2;
+    background-color: #232232;
+  border-radius: 10px;
+}
+.sys_mem {
+  color: #e0b089;
+    background-color: #232232;
+  border-radius: 10px;
+}
+.sys_icon_bat {
+    color: #afbea2;
+}
+.sys_icon_cpu {
+    color: #d78787;
+}
+.sys_icon_mem {
+    color: #e0b089;
+}
+.sys_bat_box {
+	border-radius: 16px;
+    margin: 10px 0px 10px 30px;
+  }
+.sys_cpu_box {
+	border-radius: 16px;
+    margin: 10px 30px 10px 30px;
+  }
+.sys_mem_box {
+	border-radius: 16px;
+    margin: 10px 30px 15px 0px;
+  }
+
+
+.storage_bar scale trough highlight {
+	all: unset;
+    background-image: linear-gradient(to top, #91ab7a 30%, #afbea2 50%, #ccefad 100% *50);
+	border-radius: 24px;
+}
+.bright_bar scale trough highlight {
+	all: unset;
+    background-image: linear-gradient(to top, #e0b089 30%, #e4c9af 50%, #ebd0b7 100% *50);
+	border-radius: 24px;
+}
+.volume_bar scale trough highlight {
+	all: unset;
+    background-image: linear-gradient(to top, #b893bd 30%,  #d7beda 50%, #e2c0e6 100% *50);
+	border-radius: 24px;
+}
+.mic_bar scale trough highlight {
+	all: unset;
+    background-image: linear-gradient(to top, #afcee0 30%, #a1bdce 50%, #77a5bf 100% *50);
+	border-radius: 24px;
+}
+scale trough {
+	all: unset;
+    box-shadow: 0 6px 5px 2px #06060b;
+	background-color: #232232;
+	border-radius: 24px;
+	min-height: 260px;
+	min-width: 16px;
+	margin : 10px 0px 0px 0px;
+}
+
+.vol_icon, .brg_icon, .stor_icon, .mic_icon {
+    font-size: 32;
+}
+.vol_icon {
+    color: #d7beda;
+}
+.mic_icon {
+    color: #a1bdce;
+}
+.brg_icon {
+    color: #e4c9af;
+}
+.stor_icon {
+    color: #afbea2;
+}
+
+.fetch_img {
+	background-size: cover;	
+	background-position: center;
+	min-height: 140px;
+	min-width: 100px;
+	margin: 13px;
+	border-radius: 16px;
+}
+
+
+.fetch_text_2 , .fetch_text_3 {
+    font-size: 20px;
+	font-weight : normal;
+	margin : 0px 35px 0px 0px;
+}
+
+.fetch_text_1 {
+    font-size: 20px;
+	font-weight : normal;
+	margin : 20px 35px 0px 0px;
+}
+.fetch_icon_2 , .fetch_icon_3 {
+    font-size: 24px;
+	font-weight : bold;
+	margin : 0px 0px 0px 35px;
+}
+.fetch_icon_1 {
+    font-size: 24px;
+	font-weight : bold;
+	margin : 20px 0px 0px 35px;
+}
+.fetch_sep_1 {
+    font-size: 24px;
+	font-weight : bold;
+    color: #95939f;
+	margin : 20px 0px 0px 0px;
+}
+.fetch_sep {
+    font-size: 24px;
+	font-weight : bold;
+    color: #95939f;
+	margin : 0px 0px 0px 0px;
+}
+.fetch_icon_1 {
+    color: #d7beda;
+}
+.fetch_text_1 {
+    color: #d7beda;
+}
+
+.fetch_icon_2 {
+    color: #e4c9af;
+}
+.fetch_text_2 {
+    color: #e4c9af;
+}
+
+.fetch_icon_3 {
+    color: #d78787;
+}
+.fetch_text_3 {
+    color: #d78787;
+}
+
+
+
+.msc_bg {
+	background-size: cover;	
+	background-position: center;
+    background-image: url("images/minimal.jpg");
+	min-height: 100px;
+	min-width: 100px;
+	margin: 0px;
+	border-radius: 16px;
+}
+
+.song {
+    font-size: 20px;
+	font-weight : bold;
+    color: #bfc9db;
+	margin : 10px 0px 0px 15px;
+}
+.song_artist {
+    font-size: 18px;
+	font-weight : bold;
+    color: #bfc9db;
+	margin : 0px 0px 0px 15px;
+}
+
+
+.song_btn_prev, .song_btn_next, .song_btn_loop {
+    font-size: 34px;
+    font-weight: normal;
+    color: #bfc9db;
+	margin : 6px 0px 0px 10px;
+}
+.song_btn_play {
+    font-weight: normal;
+    font-size: 42px;
+    color: #bfc9db;
+	margin : 6px 0px 0px 10px;
+}
+
+.msc_ctl_bg {
+    background-color: #13141c;
+	border-radius: 16px;
+}
+
