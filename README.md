@@ -6,4 +6,4 @@
 
 
 # Credits
-**[niraj998](https://github.com/niraj998)**
+**[niraj998 - workspace script for eww](https://github.com/niraj998)**
