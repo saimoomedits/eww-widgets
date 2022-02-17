@@ -1,0 +1,292 @@
+(defvar IMAGE "images/profile.png")
+(defvar greeting "Hey!")
+(defpoll username :interval "48h"  "whoami")
+
+(defpoll uptime :interval "50s" "uptime -p | sed -e 's/up //;s/ hours,/h/;s/ hour,/h/;s/ minutes/m/;s/ minute/m/'")
+(defpoll pkgs :interval "5h" "pacman -Qq | wc -l")
+
+(defpoll time_hour :interval "5m"
+       "date +\"%I\"")
+(defpoll time_min :interval "5s"
+       "date +\"%M\"")
+(defpoll time_day :interval "30m"
+       "date +\"%d\"")
+(defpoll time_month :interval "48h"
+      "date +\%m")
+(defpoll time_day_name :interval "30m"
+       "date +\"%A\"")
+(defpoll time_month_name :interval "48h"
+      "date +\%B")
+
+(defpoll song :interval "3s"  "~/.config/eww/bar/scripts/music_info --song")
+(defpoll song_artist :interval "3s"  "~/.config/eww/leftbar/scripts/music_info --artist")
+(defpoll song_status :interval "3s"  "~/.config/eww/leftbar/scripts/music_info --status")
+(defpoll loop_status :interval "5s"  "~/.config/eww/leftbar/scripts/music_info --loop_ic")
+
+(defpoll battery :interval "15s" "./scripts/battery --bat")
+(defpoll memory :interval "15s" "scripts/memory")
+(defpoll cpu :interval "17s" "scripts/cpu")
+
+
+(defpoll volume_percent :interval "6s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll mic_percent :interval "6s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll brightness :interval "6s" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+
+
+
+
+
+
+(defwidget profile []
+			(box :class "bg_alt" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
+				(box :class "profile_picture" :halign "center" :style "background-image: url('${IMAGE});")
+				(label :class "profile_greeting" :halign "center" :wrap "true" :limit-width 25 :text username)))
+
+
+
+(defwidget close []
+			(box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false" :spacing 10 
+				(button :class "close_btn" :halign "center" :tooltip "logout" :onclick "bspc quit" "")
+				(button :class "close_btn" :halign "center" :tooltip "sleep" :onclick "systemctl sleep" "")
+				(button :class "close_btn" :halign "center" :tooltip "reboot" :onclick "reboot" "")))
+
+
+(defwidget exit []
+			(box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false" :spacing 10 
+				(button :class "exit_btn" :halign "center" :tooltip "close leftbar" :onclick "~/.config/eww/leftbar/launch_left" "")))
+
+
+(defwidget time [] 
+		(box :class "win" 
+             :orientation "v" 
+             :space-evenly "false" 
+             :vexpand "false" 
+             :hexpand "false" 
+             :spacing 0
+		(box  
+             :orientation "h" 
+             :space-evenly "false" 
+             :vexpand "false" 
+             :halign "center"
+             :hexpand "false" 
+             :spacing 0
+			 (label :class "hour_class" 
+                    :valign "start" 
+                    :wrap "true" 
+                    :limit-width 25 
+                    :text time_hour)
+			 (label :class "minute_class" 
+                    :valign "start" 
+                    :halign "start" 
+                    :wrap "true" 
+                    :limit-width 25 
+                    :text time_min))
+            (box :orientation "h" 
+              :spacing 0 
+              :space-evenly "false" 
+              :halign "center"
+              :vexpand "false" :hexpand "false" 
+			  (label :class "day_class" 
+                     :valign "start" 
+                     :text time_day)
+			  (label :class "time_sep"
+                     :valign "start" 
+                     :text " ")
+			  (label :class "month_class" 
+                     :valign "start" 
+                     :text time_month))))
+
+
+
+
+(defwidget day [] 
+            (box :orientation "h" 
+              :class "win"
+              :spacing 0 
+              :space-evenly "false" 
+              :halign "center"
+			  (label :class "day_class_n" 
+                     :text time_day_name)
+			  (label :class "time_sep"
+                     :text ", ")
+			  (label :class "month_class_n" 
+                     :text time_month_name)))
+
+
+
+(defwidget bg []
+  (box :class "bg"))
+
+(defwidget system []
+  (box :class "sys_win" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 0 
+      (box :class "sys_bat_box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false"
+      (circular-progress :value battery
+                :class "sys_bat"
+                :thickness 11
+            (label :text ""
+                :class "sys_icon_bat"
+                :limit-width 2
+                :show_truncated false
+                :wrap false)))
+      (box :class "sys_cpu_box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false"
+      (circular-progress :value cpu
+                :class "sys_cpu"
+                :thickness 11
+            (label :text ""
+                :class "sys_icon_cpu"
+                :limit-width 2
+                :show_truncated false
+                :wrap false)))
+      (box :class "sys_mem_box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false"
+      (circular-progress :value memory
+                :class "sys_mem"
+                :thickness 11
+            (label :text ""
+                :class "sys_icon_mem"
+                :limit-width 2
+                :show_truncated false
+                :wrap false
+                :angle 0.0)))))
+
+
+
+
+
+
+;;  system
+		(defwidget stats []
+			(box :class "genwin" :vexpand "false" :hexpand "false"
+				(box :orientation "h" :spacing 25 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+					(box :class "volume_bar" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
+                            (scale :flipped "true" :orientation "v" :min 0 :max 101 :value volume_percent :active "false" :onchange "amixer -D pulse sset Master {}%" )
+                            (label  :text "" :class "vol_icon"))
+					(box :class "mic_bar" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
+                            (scale :flipped "true" :orientation "v" :min 0 :max 101 :value mic_percent :active "false")
+                            (label  :text "" :class "mic_icon"))
+					(box :class "bright_bar" :onchange "brightnessctl set {}%" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
+                            (scale :flipped "true" :orientation "v" :min 0 :max 101 :value brightness :active "false")
+                            (label  :text "" :class "brg_icon"))
+					(box :class "storage_bar" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
+                        (scale :flipped "true" :orientation "v" :min 0 :max 101 :active "false" :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)})
+                        (label  :text ""
+                                :class "stor_icon")))))
+
+(defwidget fetch_sys [] 
+		(box :class "win" :halign "center" :vexpand "false" :hexpand "false" :orientation "v" :space-evenly "false" :spacing 3
+		(box :vexpand "false" :hexpand "false" :orientation "h" :space-evenly "false" :spacing 30
+				(label :class "fetch_icon_1" :text "os")
+				(label :class "fetch_sep_1" :text "" :halign "center")
+                (label :class "fetch_text_1" :text "arch"))
+		(box :vexpand "false" :hexpand "false" :orientation "h" :space-evenly "false" :spacing 30
+				(label :class "fetch_icon_2" :text "pk")
+				(label :class "fetch_sep" :text "" :valign "center")
+                (label :class "fetch_text_2" :text pkgs))
+		(box :vexpand "false" :hexpand "false" :orientation "h" :space-evenly "false" :spacing 30
+				(label :class "fetch_icon_3" :text "up")
+				(label :class "fetch_sep" :text "" :valign "center")
+				(label :class "fetch_text_3" :text uptime))))
+
+	;;  Music
+(defwidget music []
+		(box :class "msc_ctl_bg" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
+			(box :orientation "v" :spacing 5 :space-evenly "false" :vexpand "false" :hexpand "false" :class "msc_bg"
+				(label :halign "start" :class "song" :wrap "false" :limit-width 15 :text song)
+				(label :halign "start" :class "song_artist" :wrap "true" :limit-width 15 :text song_artist))
+				(box :orientation "h" :spacing 8 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+					(button :class "song_btn_prev" :onclick "~/.config/eww/leftbar/scripts/music_info --prev" "")
+					(button :class "song_btn_play" :onclick "~/.config/eww/leftbar/scripts/music_info --toggle" song_status)
+					(button :class "song_btn_next" :onclick "~/.config/eww/leftbar/scripts/music_info --next" "")
+					(button :class "song_btn_loop" :onclick "~/.config/eww/leftbar/scripts/music_info --loop" loop_status))))
+
+
+
+
+
+
+
+(defwindow back
+  :geometry (geometry :anchor "left center"
+             :width "500px"
+             :height "88%"
+             :x "20px"
+             :y "20px")
+  (bg))
+
+(defwindow pfp
+  :geometry (geometry 
+             :width "250px"
+             :height "260px"
+             :x "20px"
+             :y "74px")
+  (profile))
+
+
+(defwindow clse
+  :geometry (geometry 
+             :width "50px"
+             :height "50px"
+             :x "295px"
+             :y "90px")
+  (close))
+
+
+(defwindow exit
+  :geometry (geometry 
+             :width "50px"
+             :height "50px"
+             :x "465px"
+             :y "75px")
+  (exit))
+
+(defwindow time
+  :geometry (geometry 
+             :width "218px"
+             :height "90px"
+             :x "285px"
+             :y "155px")
+  (time))
+
+
+(defwindow day_dot
+  :geometry (geometry 
+             :width "250px"
+             :height "50px"
+             :x "270px"
+             :y "285px")
+  (day))
+
+
+(defwindow sys_usg
+  :geometry (geometry 
+             :width "420px"
+             :height "160px"
+             :x "40px"
+             :y "350px")
+  (system))
+
+
+
+(defwindow status
+  :geometry (geometry 
+             :width "220px"
+             :height "160px"
+             :x "40px"
+             :y "520px")
+  (stats))
+
+(defwindow fetch :stacking "fg" :focusable "false" :screen 1
+  :geometry (geometry 
+             :width "260px"
+             :height "140px"
+             :x "255px"
+             :y "530px")
+  (fetch_sys))
+
+
+(defwindow song :stacking "fg" :focusable "false" :screen 1
+  :geometry (geometry 
+             :width "248px"
+             :height "180px"
+             :x "253px"
+             :y "670px")
+  (music))

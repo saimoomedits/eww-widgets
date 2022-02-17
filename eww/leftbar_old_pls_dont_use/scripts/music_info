@@ -18,7 +18,7 @@ get_status() {
 get_song() {
 	song=`mpc -f %title% current`
 	if [[ -z "$song" ]]; then
-		echo "song"
+		echo "Offline"
 	else
 		echo "$song"
 	fi	
@@ -28,7 +28,7 @@ get_song() {
 get_artist() {
 	artist=`mpc -f %artist% current`
 	if [[ -z "$artist" ]]; then
-		echo "artist"
+		echo ""
 	else
 		echo "$artist"
 	fi	

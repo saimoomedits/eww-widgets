@@ -5,20 +5,19 @@ FILE="$HOME/.cache/eww_launch_side.xyz"
 EWW="$HOME/.local/bin/eww/eww -c $HOME/.config/eww/leftbar"
 
 # windows not in use
-# separ
+# exit
 
 ## window list
 w_ls="
-    main \
-    pfp \
-    song \
+    back \
+    status \
+    time \
+    clse \
+    day_dot \
     sys_usg \
-    song_prog \
-    song_ctl \
-    audio \
-    quote \
-    sys_tray \
-    time
+    song \
+    fetch \
+    pfp
 "
 ## Run eww daemon if not running already
 if [[ ! `pidof eww` ]]; then
@@ -26,11 +25,6 @@ if [[ ! `pidof eww` ]]; then
 	sleep 1
 fi
 
-# widgets not in use
-# apps
-# twitter
-# volume
-# fetch
 
 ## Open widgets 
 run_eww() {
